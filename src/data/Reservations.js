@@ -1,0 +1,42 @@
+export const Reservations = [
+  {
+    id: 1,
+    customerID: "123",
+    restaurantID: "5E24",
+    guestSize: "3-4",
+    time: "16:00",
+    note: "Note in here",
+  },
+  {
+    id: 2,
+    customerID: "123",
+    restaurantID: "5E24",
+    guestSize: "3-4",
+    time: "16:00",
+    note: "Note in here",
+  },
+  {
+    id: 3,
+    customerID: "123",
+    restaurantID: "5E24",
+    guestSize: "3-4",
+    time: "16:00",
+    note: "Note in here",
+  },
+  {
+    id: 4,
+    customerID: "123",
+    restaurantID: "5E24",
+    guestSize: "3-4",
+    time: "16:00",
+    note: "Note in here",
+  },
+  {
+    id: 5,
+    customerID: "123",
+    restaurantID: "5E24",
+    guestSize: "3-4",
+    time: "16:00",
+    note: "Note in here",
+  },
+];
