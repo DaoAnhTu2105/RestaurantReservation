@@ -134,25 +134,25 @@ function AdminReservation() {
                 data-accordion="false"
               >
                 <li className="nav-item has-treeview">
-                  <Link to={`users/`} className="nav-link">
+                  <Link to={`/home/users`} className="nav-link">
                     <i className="nav-icon fas fa-users"></i>
                     <p>Users</p>
                   </Link>
                 </li>
                 <li className="nav-item has-treeview">
-                  <Link to={`restaurant/`} className="nav-link">
+                  <Link to={`/home/restaurant`} className="nav-link">
                     <i className="nav-icon fas fa-building"></i>
                     <p>Restaurant</p>
                   </Link>
                 </li>
                 <li className="nav-item has-treeview">
-                  <Link to={`/`} className="nav-link">
+                  <Link to={`/home/tableReservation`} className="nav-link">
                     <i className="nav-icon fas fa-list-ul"></i>
                     <p>Reservation</p>
                   </Link>
                 </li>
                 <li className="nav-item has-treeview">
-                  <Link to={`menu/`} className="nav-link">
+                  <Link to={`/home/menu`} className="nav-link">
                     <i className="nav-icon fas fa-edit"></i>
                     <p>Menu</p>
                   </Link>
