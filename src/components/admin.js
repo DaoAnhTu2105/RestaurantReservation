@@ -4,7 +4,6 @@ import "../CSS/select2/select2.min.css";
 import "../CSS/admin-custom.css";
 import { Link } from "react-router-dom";
 
-import user from "./user.js";
 function AdminReservation() {
   return (
     <>

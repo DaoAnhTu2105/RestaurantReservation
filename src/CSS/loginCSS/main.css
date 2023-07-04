@@ -171,6 +171,9 @@ textarea:-ms-input-placeholder {
   color: #999999;
 }
 
+.login100-more {
+  background-image: url('../../../public/assets/loginBackground.jpg');
+}
 
 label {
   display: block;

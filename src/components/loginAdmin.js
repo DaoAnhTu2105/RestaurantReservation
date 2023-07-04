@@ -18,7 +18,11 @@ function LoginAdmin() {
 
   return (
     <div>
-      {/* <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> */}
+      <link
+        rel="icon"
+        type="image/png"
+        href="../../../public/assets/loginBackground.jpg"
+      />
       <div style={{ backgroundColor: "#666666" }}>
         <div class="limiter">
           <div class="container-login100">
@@ -57,7 +61,6 @@ function LoginAdmin() {
               </form>
               <div
                 class="login100-more"
-                // style="background-image: url('images/bg-01.jpg')"
               ></div>
             </div>
           </div>

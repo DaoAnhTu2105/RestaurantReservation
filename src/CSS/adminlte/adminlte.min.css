@@ -1,15 +1,3 @@
-/*!
- *   AdminLTE v3.0.5
- *   Author: Colorlib
- *   Website: AdminLTE.io <http://adminlte.io>
- *   License: Open source - MIT <http://opensource.org/licenses/MIT>
- */
-/*!
- * Bootstrap v4.4.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 :root {
     --blue: #007bff;
     --indigo: #6610f2;
@@ -280,7 +268,7 @@ select {
 [type=reset],
 [type=submit],
 button {
-    -webkit-appearance: button
+    appearance: button
 }
 
 [type=button]:not(:disabled),
@@ -308,7 +296,7 @@ input[type=date],
 input[type=datetime-local],
 input[type=month],
 input[type=time] {
-    -webkit-appearance: listbox
+    appearance: listbox
 }
 
 textarea {
@@ -346,7 +334,7 @@ progress {
 
 [type=search] {
     outline-offset: -2px;
-    -webkit-appearance: none
+    appearance: none
 }
 
 [type=search]::-webkit-search-decoration {
@@ -669,8 +657,7 @@ pre code {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-right: -7.5px;
-    margin-left: -7.5px
+
 }
 
 .no-gutters {
@@ -11392,7 +11379,7 @@ a.text-dark:hover {
     }
 
     abbr[title]::after {
-        content: " (" attr(title) ")"
+        content: " ("attr(title) ")"
     }
 
     pre {
@@ -11487,7 +11474,6 @@ html {
     min-height: 100%
 }
 
-.wrapper {}
 
 .wrapper .content-wrapper {
     min-height: calc(100vh - calc(3.5rem + 1px) - calc(3.5rem + 1px))
@@ -14392,7 +14378,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     .sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-form,
     .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel>.info {
         display: block !important;
-        -webkit-transform: translateZ(0)
+        transform: translateZ(0)
     }
 
     .sidebar-mini.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar>.nav-item>.nav-link>span,
@@ -14554,7 +14540,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
     .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .sidebar-form,
     .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel>.info {
         display: block !important;
-        -webkit-transform: translateZ(0)
+        transform: translateZ(0)
     }
 
     .sidebar-mini-md.sidebar-collapse .main-sidebar.sidebar-focused .nav-sidebar>.nav-item>.nav-link>span,
