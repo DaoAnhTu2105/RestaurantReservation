@@ -9,6 +9,7 @@ import Menu from "./components/menu.js";
 import TableReservation from "./components/tableReservation";
 import LoginAdmin from "./components/loginAdmin";
 import Restaurant from "./components/restaurant";
+import Table from "./components/table";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,6 +25,7 @@ root.render(
         <Route path="/home/users" element={<UserManagement />}></Route>
         <Route path="/home/menu" element={<Menu />}></Route>
         <Route path="/home/restaurant" element={<Restaurant />}></Route>
+        <Route path="/home/restaurant/table/:id" element={<Table />}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>

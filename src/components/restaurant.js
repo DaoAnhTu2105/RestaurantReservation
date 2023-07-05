@@ -21,7 +21,10 @@ export default function restaurant() {
           <div className="container-fluid">
             <div className="row">
               {Restaurants.map((restaurant) => (
-                <Link to={`table/${restaurant.id}`} key={restaurant.id}>
+                <Link
+                  to={`/home/restaurant/table/${restaurant.id}`}
+                  key={restaurant.id}
+                >
                   <div className="wrap animate pop">
                     <div className="overlay">
                       <div className="overlay-content animate slide-left delay-2">
