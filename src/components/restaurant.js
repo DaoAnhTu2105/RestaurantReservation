@@ -19,7 +19,7 @@ export default function restaurant() {
         </section>
         <section className="content">
           <div className="container-fluid">
-            <div className="row">
+            <div className="">
               {Restaurants.map((restaurant) => (
                 <Link
                   to={`/home/restaurant/table/${restaurant.id}`}

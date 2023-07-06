@@ -80,57 +80,6 @@ export default function tableReservation() {
                       </tbody>
                     </table>
                   </div>
-                  {/* <div className="card-footer">
-                    <div className="pagination-block">
-                      <ul className="pagination">
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            <i className="fas fa-fast-backward"></i>
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            <i className="fas fa-angle-double-left"></i>
-                          </a>
-                        </li>
-                        <li className="page-item active">
-                          <a className="page-link" href="/#!">
-                            1
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            2
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            3
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            ...
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            25
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            <i className="fas fa-angle-double-right"></i>
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="/#!">
-                            <i className="fas fa-fast-forward"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div> */}
                 </div>
               </div>
             </div>
