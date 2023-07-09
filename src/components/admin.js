@@ -17,23 +17,15 @@ function AdminReservation() {
       />
       <div className="wrapper">
         <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-          <a
-            className="nav-link menu-btn"
-            data-widget="pushmenu"
-            href="/#!"
-            role="button"
-          >
-            <i className="fa-solid fa-bar"></i>
-          </a>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item dropdown">
               <a className="nav-link" data-toggle="dropdown" href="/#">
                 <i className="fas fa-user-cog"></i>
+                &nbsp; Logout
               </a>
               <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <a href="/#" className="dropdown-item">
                   <div className="media">
-                    {/* <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar" className="img-size-50 mr-3 img-circle">  */}
                     <div className="media-body">
                       <h3 className="dropdown-item-title">
                         Brad Diesel
@@ -66,17 +58,16 @@ function AdminReservation() {
                     </div>
                   </div>
                 </a>
-
-                <div className="dropdown-divider"></div>
-                <a href="/#" className="dropdown-item dropdown-footer">
-                  See All Messages
-                </a>
               </div>
             </li>
             <li className="nav-item dropdown">
-              <a className="nav-link" data-toggle="dropdown" href="//#">
+              <Link
+                to="/home/users"
+                className="nav-link"
+                data-toggle="dropdown"
+              >
                 Dao Anh Tu
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -13,7 +13,7 @@ export default function user() {
           <div className="container-fluid">
             <div className="row mb-4">
               <div className="col-md-12 title-block">
-                <h1 className="main-title">Manage Staff</h1>
+                <h1 className="main-title">Manage Customer</h1>
               </div>
             </div>
           </div>
@@ -57,13 +57,8 @@ export default function user() {
                       <thead>
                         <tr>
                           <th>User ID</th>
-                          <th>Username</th>
-                          <th>Password</th>
+                          <th>Name</th>
                           <th>Phone</th>
-                          <th>Email</th>
-                          <th>Role</th>
-
-                          <th>Edit</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -71,15 +66,7 @@ export default function user() {
                           <tr>
                             <td>{user.id}</td>
                             <td>{user.username}</td>
-                            <td>{user.password}</td>
                             <td>{user.phone}</td>
-                            <td>{user.email}</td>
-                            <td>{user.isAdmin}</td>
-                            <td>
-                              <button className="active-btn">
-                                <i className="fas fa-pencil-alt"></i>
-                              </button>
-                            </td>
                           </tr>
                         ))}
                       </tbody>

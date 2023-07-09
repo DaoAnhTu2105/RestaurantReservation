@@ -56,7 +56,6 @@ export default function tableReservation() {
                           <th>Customer ID</th>
                           <th>Restaurant ID</th>
                           <th>Guest Size</th>
-
                           <th>Time</th>
                           <th>Note</th>
                           <th>Edit</th>
@@ -73,6 +72,10 @@ export default function tableReservation() {
                             <td>
                               <button className="active-btn">
                                 <i className="fas fa-pencil-alt"></i>
+                              </button>
+                              &nbsp;
+                              <button className="active-btn">
+                                <i class="fa-regular fa-trash-can"></i>
                               </button>
                             </td>
                           </tr>

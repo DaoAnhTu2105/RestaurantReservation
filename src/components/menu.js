@@ -5,10 +5,22 @@ import "../CSS/admin-custom.css";
 import "../CSS/menu.css";
 import { Menus } from "../data/Menus";
 import AdminReservation from "./admin";
-export default function menu() {
+import { useState } from "react";
+import { PopUpMenu } from "./popUp";
+
+export default function Menu() {
+  const [menu, setMenu] = useState(false);
+  const handleOpen = () => {
+    setMenu(true);
+  };
+  const handleClose = () => {
+    setMenu(false);
+  };
+
   return (
     <>
       <AdminReservation />
+      <PopUpMenu open={menu} close={handleClose} />
       <div className="content-wrapper">
         <section className="content-header">
           <div className="container-fluid">
@@ -53,11 +65,15 @@ export default function menu() {
                       </div>
                     </form>
                   </div>
+                  <button className="tableAdd" onClick={handleOpen}>
+                    Add Menu
+                  </button>
                   <div className="card-body table-responsive">
                     <table className="table table-hover text-nowrap job-seeker-tbl">
                       <thead>
                         <tr>
                           <th>Image</th>
+                          <th>ID</th>
                           <th>Name</th>
                           <th>Detail</th>
                           <th>Type</th>
@@ -71,10 +87,11 @@ export default function menu() {
                         {Menus.map((menu) => (
                           <tr>
                             <td>
-                              <a href={menu.img} target="_blank">
-                                <img src={menu.img} />
+                              <a href={menu.img} target="/_blank">
+                                <img src={menu.img} alt="" />
                               </a>
                             </td>
+                            <td>{menu.id}</td>
                             <td>{menu.name}</td>
                             <td>{menu.detail}</td>
                             <td>{menu.type}</td>
@@ -84,6 +101,10 @@ export default function menu() {
                             <td>
                               <button className="active-btn">
                                 <i className="fas fa-pencil-alt"></i>
+                              </button>
+                              &nbsp;
+                              <button className="active-btn">
+                                <i class="fa-regular fa-trash-can"></i>
                               </button>
                             </td>
                           </tr>

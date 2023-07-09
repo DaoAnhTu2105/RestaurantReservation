@@ -33266,4 +33266,14 @@ a.text-muted:hover {
     color: #fff
 }
 
+.tableAdd {
+    margin-left: auto;
+    background-color: #02458d;
+    padding: 15px;
+    margin-right: 20px;
+    margin-top: 20px;
+    color: #fff;
+    border-radius: 10px;
+}
+
 /*# sourceMappingURL=adminlte.min.css.map */

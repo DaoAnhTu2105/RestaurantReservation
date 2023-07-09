@@ -2,7 +2,6 @@ export const Restaurants = [
   {
     id: 1,
     name: "Sa Wa Dika",
-    restaurantID: "5E24",
     address: "Nguyen Gia Tri, Q.Binh Thanh",
     phone: "0923092300923",
     image:
@@ -16,10 +15,8 @@ export const Restaurants = [
   {
     id: 2,
     name: "Sa Wa Dika",
-    restaurantID: "5E24",
     address: "Nguyen Gia Tri, Q.Binh Thanh",
     phone: "0923092300923",
-
     image:
       "https://i.pinimg.com/originals/aa/99/7d/aa997d46440009de587b7733f30e3a0a.jpg",
     openHours: "10:00 - 22:00 ",
@@ -31,10 +28,8 @@ export const Restaurants = [
   {
     id: 3,
     name: "Sa Wa Dika",
-    restaurantID: "5E24",
     address: "Nguyen Gia Tri, Q.Binh Thanh",
     phone: "0923092300923",
-
     image:
       "https://i.pinimg.com/originals/aa/99/7d/aa997d46440009de587b7733f30e3a0a.jpg",
     openHours: "10:00 - 22:00 ",
@@ -46,10 +41,8 @@ export const Restaurants = [
   {
     id: 4,
     name: "Sa Wa Dika",
-    restaurantID: "5E24",
     address: "Nguyen Gia Tri, Q.Binh Thanh",
     phone: "0923092300923",
-
     image:
       "https://i.pinimg.com/originals/aa/99/7d/aa997d46440009de587b7733f30e3a0a.jpg",
     openHours: "10:00 - 22:00 ",
@@ -61,10 +54,8 @@ export const Restaurants = [
   {
     id: 5,
     name: "Sa Wa Dika",
-    restaurantID: "5E24",
     address: "Nguyen Gia Tri, Q.Binh Thanh",
     phone: "0923092300923",
-
     image:
       "https://i.pinimg.com/originals/aa/99/7d/aa997d46440009de587b7733f30e3a0a.jpg",
     openHours: "10:00 - 22:00 ",

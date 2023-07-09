@@ -58,7 +58,7 @@ export const Tables = [
   {
     id: 8,
     tableCapacity: 2,
-    restaurantID: 3,
+    restaurantID: 5,
     status: 1,
     createAt: ".",
     updatedAt: "./",

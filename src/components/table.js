@@ -2,22 +2,39 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import AdminReservation from "./admin";
 import { Tables } from "../data/Tables";
+import { useState } from "react";
+import PopUpTable, { PopUpEditTable } from "./popUp";
 
 export default function Table() {
   const { id } = useParams();
-  console.log(id);
-
-  const table = Tables.find((obj) => {
-    return obj.restaurantID == id.id;
-  });
-  console.log(id.id);
-
+  const [modalTable, setModalTable] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [idEdit, setIdEdit] = useState(null);
   const obj = Tables.filter((table) => table.restaurantID == id);
-  console.log(obj);
+
+  const handleTable = () => {
+    setModalTable(true);
+  };
+  const handleClose = () => {
+    setModalTable(false);
+  };
+  const handleEditTable = (id) => {
+    setEditModal(true);
+    setIdEdit(id);
+  };
+  const handleEditClose = () => {
+    setEditModal(false);
+    setIdEdit("");
+  };
 
   return (
     <div>
       <AdminReservation />
+      {modalTable && <PopUpTable close={handleClose} open={modalTable} />}
+      {idEdit && (
+        <PopUpEditTable close={handleEditClose} open={editModal} id={idEdit} />
+      )}
+
       <div className="content-wrapper">
         <section className="content-header">
           <div className="container-fluid">
@@ -47,7 +64,6 @@ export default function Table() {
                               className="form-control float-right"
                               placeholder="Search"
                             />
-
                             <div className="input-group-append">
                               <button
                                 type="submit"
@@ -62,6 +78,9 @@ export default function Table() {
                       </div>
                     </form>
                   </div>
+                  <button className="tableAdd" onClick={handleTable}>
+                    Add Table
+                  </button>
                   <div className="card-body table-responsive">
                     <table className="table table-hover text-nowrap job-seeker-tbl">
                       <thead>
@@ -80,7 +99,14 @@ export default function Table() {
                             <td>{table.status}</td>
                             <td>
                               <button className="active-btn">
-                                <i className="fas fa-pencil-alt"></i>
+                                <i
+                                  className="fas fa-pencil-alt"
+                                  onClick={() => handleEditTable(table.id)}
+                                ></i>
+                              </button>
+                              &nbsp;
+                              <button className="active-btn">
+                                <i class="fa-regular fa-trash-can"></i>
                               </button>
                             </td>
                           </tr>
