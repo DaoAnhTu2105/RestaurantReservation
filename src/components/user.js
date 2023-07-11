@@ -13,7 +13,7 @@ export default function user() {
           <div className="container-fluid">
             <div className="row mb-4">
               <div className="col-md-12 title-block">
-                <h1 className="main-title">Manage Customer</h1>
+                <h1 className="main-title">Manage Staff</h1>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function user() {
                     <table className="table table-hover text-nowrap job-seeker-tbl">
                       <thead>
                         <tr>
-                          <th>User ID</th>
+                          <th>Staff ID</th>
                           <th>Name</th>
                           <th>Phone</th>
                         </tr>
@@ -72,57 +72,6 @@ export default function user() {
                       </tbody>
                     </table>
                   </div>
-                  {/* <div className="card-footer">
-                  <div className="pagination-block">
-                    <ul className="pagination">
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-fast-backward"></i>
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-angle-double-left"></i>
-                        </a>
-                      </li>
-                      <li className="page-item active">
-                        <a className="page-link" href="/#!">
-                          1
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          2
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          3
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          ...
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          25
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-angle-double-right"></i>
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-fast-forward"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div> */}
                 </div>
               </div>
             </div>

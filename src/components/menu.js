@@ -7,6 +7,7 @@ import { Menus } from "../data/Menus";
 import AdminReservation from "./admin";
 import { useState } from "react";
 import { PopUpMenu } from "./popUp";
+import Staff from "./staff";
 
 export default function Menu() {
   const [menu, setMenu] = useState(false);
@@ -19,7 +20,7 @@ export default function Menu() {
 
   return (
     <>
-      <AdminReservation />
+      <Staff />
       <PopUpMenu open={menu} close={handleClose} />
       <div className="content-wrapper">
         <section className="content-header">

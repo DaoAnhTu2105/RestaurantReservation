@@ -1,4 +1,4 @@
-export const Tables = [
+export const Tables_Staff = [
   {
     id: 1,
     tableCapacity: 3,
@@ -11,7 +11,7 @@ export const Tables = [
     id: 2,
     tableCapacity: 2,
     restaurantID: 1,
-    status: 1,
+    status: 2,
     createAt: ".",
     updatedAt: "./",
   },
@@ -33,7 +33,7 @@ export const Tables = [
   },
   {
     id: 5,
-    tableCapacity: 7,
+    tableCapacity: 2,
     restaurantID: 1,
     status: 1,
     createAt: ".",
@@ -41,7 +41,7 @@ export const Tables = [
   },
   {
     id: 6,
-    tableCapacity: 8,
+    tableCapacity: 2,
     restaurantID: 2,
     status: 1,
     createAt: ".",
@@ -57,7 +57,7 @@ export const Tables = [
   },
   {
     id: 8,
-    tableCapacity: 1,
+    tableCapacity: 2,
     restaurantID: 5,
     status: 1,
     createAt: ".",

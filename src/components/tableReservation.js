@@ -1,10 +1,10 @@
 import React from "react";
 import { Reservations } from "../data/Reservations";
-import AdminReservation from "./admin";
+import Staff from "./staff";
 export default function tableReservation() {
   return (
     <div>
-      <AdminReservation />
+      <Staff />
       <div className="content-wrapper">
         <section className="content-header">
           <div className="container-fluid">

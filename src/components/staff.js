@@ -4,7 +4,7 @@ import "../CSS/select2/select2.min.css";
 import "../CSS/admin-custom.css";
 import { Link } from "react-router-dom";
 
-function AdminReservation() {
+function Staff() {
   return (
     <>
       <link
@@ -45,24 +45,24 @@ function AdminReservation() {
                 data-accordion="false"
               >
                 <li className="nav-item has-treeview">
-                  <Link to={`/home/users`} className="nav-link">
-                    <i className="nav-icon fas fa-users"></i>
-                    <p>Staff Account</p>
+                  <Link to={`/staff/tableReservation`} className="nav-link">
+                    <i className="nav-icon fas fa-list-ul"></i>
+                    <p>Reservation</p>
                   </Link>
                 </li>
                 <li className="nav-item has-treeview">
-                  <Link to={`/home/restaurant`} className="nav-link">
-                    <i className="nav-icon fas fa-building"></i>
-                    <p>Restaurant</p>
-                  </Link>
-                </li>
-
-                {/* <li className="nav-item has-treeview">
                   <Link to={`/staff/menu`} className="nav-link">
                     <i className="nav-icon fas fa-edit"></i>
                     <p>Menu</p>
                   </Link>
-                </li> */}
+                </li>
+
+                <li className="nav-item has-treeview">
+                  <Link to={`/staff/table`} className="nav-link">
+                    <i className="nav-icon fas fa-edit"></i>
+                    <p>Table</p>
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
@@ -72,4 +72,4 @@ function AdminReservation() {
   );
 }
 
-export default AdminReservation;
+export default Staff;

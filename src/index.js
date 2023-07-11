@@ -10,20 +10,30 @@ import TableReservation from "./components/tableReservation";
 import LoginAdmin from "./components/loginAdmin";
 import Restaurant from "./components/restaurant";
 import Table from "./components/table";
+import Staff from "./components/staff";
+import TableForStaff from "./components/tableForStaff";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <BrowserRouter>
+      {/* STAFF */}
+      <Routes>
+        <Route path="/staff" element={<Staff />}></Route>
+        <Route
+          path="/staff/tableReservation"
+          element={<TableReservation />}
+        ></Route>
+        <Route path="/staff/table" element={<TableForStaff />}></Route>
+        <Route path="/staff/menu" element={<Menu />}></Route>
+      </Routes>
+
+      {/* Admin */}
       <Routes>
         <Route path="/" element={<LoginAdmin />}></Route>
         <Route path="/home" element={<App />}></Route>
-        <Route
-          path="/home/tableReservation"
-          element={<TableReservation />}
-        ></Route>
+
         <Route path="/home/users" element={<UserManagement />}></Route>
-        <Route path="/home/menu" element={<Menu />}></Route>
         <Route path="/home/restaurant" element={<Restaurant />}></Route>
         <Route path="/home/restaurant/table/:id" element={<Table />}></Route>
       </Routes>
