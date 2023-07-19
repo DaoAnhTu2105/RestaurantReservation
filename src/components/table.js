@@ -1,40 +1,82 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import AdminReservation from "./admin";
-import { Tables } from "../data/Tables";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import PopUpTable, { PopUpEditTable } from "./popUp";
 
 export default function Table() {
-  const { id } = useParams();
+  // const { id } = useParams();
   const [modalTable, setModalTable] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [idEdit, setIdEdit] = useState(null);
-  const obj = Tables.filter((table) => table.restaurantID == id);
+  const [edit, setEdit] = useState(null);
+  // const obj = Tables.filter((table) => table.restaurantID == id);
+  const [tableAPI, setTableAPI] = useState([]);
+
+  const tableUrl = `http://tablereservationapi.somee.com/API/Admin/GetAllTables`;
+  const delTable = `http://tablereservationapi.somee.com/API/Admin/DeleteTable`;
 
   const handleTable = () => {
     setModalTable(true);
   };
-  const handleClose = () => {
-    setModalTable(false);
+  const handleClose = async () => {
+    await setModalTable(false);
+    getAllTableData();
   };
-  const handleEditTable = (id) => {
+  const handleEditTable = (obj) => {
     setEditModal(true);
-    setIdEdit(id);
+    setEdit(obj);
   };
   const handleEditClose = () => {
     setEditModal(false);
-    setIdEdit("");
+    getAllTableData();
+  };
+
+  useEffect(() => {
+    getAllTableData();
+  }, []);
+
+  const getAllTableData = () => {
+    fetch(tableUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        return setTableAPI(data);
+      })
+      .catch((error) => console.log(error.message));
+  };
+
+  const handleDeleteTable = async (id) => {
+    try {
+      const response = await fetch(`${delTable}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        console.log("Delete successful");
+        getAllTableData();
+      } else {
+        console.log("Delete failed");
+      }
+    } catch (error) {
+      console.error("Error calling API:", error);
+    }
   };
 
   return (
     <div>
       <AdminReservation />
-      {modalTable && <PopUpTable close={handleClose} open={modalTable} />}
-      {idEdit && (
-        <PopUpEditTable close={handleEditClose} open={editModal} id={idEdit} />
+      <PopUpTable close={handleClose} open={modalTable} />
+      {edit && (
+        <PopUpEditTable close={handleEditClose} open={editModal} edit={edit} />
       )}
-
       <div className="content-wrapper">
         <section className="content-header">
           <div className="container-fluid">
@@ -86,31 +128,39 @@ export default function Table() {
                       <thead>
                         <tr>
                           <th>ID</th>
-                          <th>Table Capacity</th>
-                          <th>Status</th>
+                          <th>Table Size</th>
+                          <th>Restaurant ID</th>
                           <th>Edit</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {obj.map((table) => (
-                          <tr>
-                            <td>{table.id}</td>
-                            <td>{table.tableCapacity} persons</td>
-                            <td>{table.status}</td>
-                            <td>
-                              <button className="active-btn">
-                                <i
-                                  className="fas fa-pencil-alt"
-                                  onClick={() => handleEditTable(table.id)}
-                                ></i>
-                              </button>
-                              &nbsp;
-                              <button className="active-btn">
-                                <i class="fa-regular fa-trash-can"></i>
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
+                        {tableAPI.map(
+                          (table) =>
+                            table.status && (
+                              <tr>
+                                <td>{table.tableId}</td>
+                                <td>{table.size} persons</td>
+                                <td>{table.restaurantId}</td>
+                                <td>
+                                  <button
+                                    className="active-btn"
+                                    onClick={() => handleEditTable(table)}
+                                  >
+                                    <i className="fas fa-pencil-alt"></i>
+                                  </button>
+                                  &nbsp;
+                                  <button
+                                    className="active-btn"
+                                    onClick={() =>
+                                      handleDeleteTable(table.tableId)
+                                    }
+                                  >
+                                    <i class="fa-regular fa-trash-can"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                            )
+                        )}
                       </tbody>
                     </table>
                   </div>

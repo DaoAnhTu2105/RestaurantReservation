@@ -3,25 +3,84 @@ import "../CSS/adminlte/adminlte.min.css";
 import "../CSS/select2/select2.min.css";
 import "../CSS/admin-custom.css";
 import "../CSS/menu.css";
-import { Menus } from "../data/Menus";
 import AdminReservation from "./admin";
-import { useState } from "react";
-import { PopUpMenu } from "./popUp";
-import Staff from "./staff";
+import { useState, useEffect } from "react";
+import { PopUpEditMenu, PopUpMenu } from "./popUp";
 
 export default function Menu() {
   const [menu, setMenu] = useState(false);
+  const [menus, setMenus] = useState([]);
+  const [openEditMenu, setOpenEditMenu] = useState(false);
+  const [objMenu, setObjMenu] = useState({});
   const handleOpen = () => {
     setMenu(true);
   };
   const handleClose = () => {
     setMenu(false);
+    getAllDataMenu();
+  };
+  const url = `http://tablereservationapi.somee.com/API/Admin/GetAllMenus`;
+  const delMenu = `http://tablereservationapi.somee.com/API/Admin/DeleteMenu`;
+  const getAllDataMenu = () => {
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setMenus(data);
+      })
+      .catch((error) => console.log(error.message));
+  };
+  useEffect(() => {
+    getAllDataMenu();
+  }, []);
+
+  const handleOpenEditMenu = (obj) => {
+    setOpenEditMenu(true);
+    setObjMenu(obj);
+  };
+
+  const handleCloseEditMenu = () => {
+    setOpenEditMenu(false);
+    getAllDataMenu();
+  };
+
+  const handleDeleteMenu = async (id) => {
+    try {
+      const response = await fetch(`${delMenu}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        // Delete successful
+        console.log("Delete successful");
+        getAllDataMenu();
+        // Perform any necessary actions after deletion
+      } else {
+        console.log("Delete failed");
+      }
+    } catch (error) {
+      console.error("Error calling API:", error);
+    }
   };
 
   return (
     <>
-      <Staff />
+      <AdminReservation />
       <PopUpMenu open={menu} close={handleClose} />
+      {objMenu && (
+        <PopUpEditMenu
+          open={openEditMenu}
+          close={handleCloseEditMenu}
+          menuEdit={objMenu}
+        />
+      )}
       <div className="content-wrapper">
         <section className="content-header">
           <div className="container-fluid">
@@ -73,38 +132,41 @@ export default function Menu() {
                     <table className="table table-hover text-nowrap job-seeker-tbl">
                       <thead>
                         <tr>
-                          <th>Image</th>
                           <th>ID</th>
                           <th>Name</th>
                           <th>Detail</th>
-                          <th>Type</th>
-                          <th>Restaurant ID</th>
                           <th>Price</th>
-                          <th>Status</th>
+                          <th>Type</th>
+                          <th>Is Deleted</th>
                           <th>Edit</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {Menus.map((menu) => (
+                        {menus.map((menu) => (
                           <tr>
-                            <td>
-                              <a href={menu.img} target="/_blank">
-                                <img src={menu.img} alt="" />
-                              </a>
-                            </td>
-                            <td>{menu.id}</td>
-                            <td>{menu.name}</td>
-                            <td>{menu.detail}</td>
-                            <td>{menu.type}</td>
-                            <td>{menu.restaurantID}</td>
+                            <td>{menu.menuId}</td>
+                            <td>{menu.dishName}</td>
+                            <td>{menu.dishDetail}</td>
                             <td>{menu.price}</td>
-                            <td>{menu.status}</td>
+                            <td>{menu.type}</td>
+                            {!menu.isDeleted ? (
+                              <td style={{ color: "green" }}>False</td>
+                            ) : (
+                              <td style={{ color: "red" }}>True</td>
+                            )}
+
                             <td>
-                              <button className="active-btn">
+                              <button
+                                className="active-btn"
+                                onClick={() => handleOpenEditMenu(menu)}
+                              >
                                 <i className="fas fa-pencil-alt"></i>
                               </button>
                               &nbsp;
-                              <button className="active-btn">
+                              <button
+                                className="active-btn"
+                                onClick={() => handleDeleteMenu(menu.menuId)}
+                              >
                                 <i class="fa-regular fa-trash-can"></i>
                               </button>
                             </td>
@@ -113,57 +175,6 @@ export default function Menu() {
                       </tbody>
                     </table>
                   </div>
-                  {/* <div className="card-footer">
-                  <div className="pagination-block">
-                    <ul className="pagination">
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-fast-backward"></i>
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-angle-double-left"></i>
-                        </a>
-                      </li>
-                      <li className="page-item active">
-                        <a className="page-link" href="/#!">
-                          1
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          2
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          3
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          ...
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          25
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-angle-double-right"></i>
-                        </a>
-                      </li>
-                      <li className="page-item">
-                        <a className="page-link" href="/#!">
-                          <i className="fas fa-fast-forward"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div> */}
                 </div>
               </div>
             </div>

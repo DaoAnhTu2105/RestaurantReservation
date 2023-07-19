@@ -16,25 +16,6 @@ function Staff() {
         rel="stylesheet"
       />
       <div className="wrapper">
-        <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item dropdown">
-              <a className="nav-link" data-toggle="dropdown" href="/#">
-                <i className="fas fa-user-cog"></i>
-                &nbsp; Logout
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <Link
-                to="/home/users"
-                className="nav-link"
-                data-toggle="dropdown"
-              >
-                Dao Anh Tu
-              </Link>
-            </li>
-          </ul>
-        </nav>
         <div className="main-sidebar sidebar-dark-primary">
           <div className="sidebar">
             <nav className="mt-2">
@@ -44,6 +25,11 @@ function Staff() {
                 role="menu"
                 data-accordion="false"
               >
+                <li className={`nav-item dropdown pl-2 pt-2`}>
+                  <Link to="/staff" className="nav-link">
+                    Staff
+                  </Link>
+                </li>
                 <li className="nav-item has-treeview">
                   <Link to={`/staff/tableReservation`} className="nav-link">
                     <i className="nav-icon fas fa-list-ul"></i>
@@ -51,17 +37,22 @@ function Staff() {
                   </Link>
                 </li>
                 <li className="nav-item has-treeview">
-                  <Link to={`/staff/menu`} className="nav-link">
-                    <i className="nav-icon fas fa-edit"></i>
-                    <p>Menu</p>
-                  </Link>
-                </li>
-
-                <li className="nav-item has-treeview">
                   <Link to={`/staff/table`} className="nav-link">
                     <i className="nav-icon fas fa-edit"></i>
-                    <p>Table</p>
+                    <p>Reserving Table</p>
                   </Link>
+                </li>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <li className="nav-item dropdown">
+                  <a className="nav-link" data-toggle="dropdown" href="/#">
+                    <i class="nav-icon fas fa-power-off"></i>
+                    &nbsp; Log out
+                  </a>
                 </li>
               </ul>
             </nav>

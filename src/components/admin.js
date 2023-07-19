@@ -3,8 +3,13 @@ import "../CSS/adminlte/adminlte.min.css";
 import "../CSS/select2/select2.min.css";
 import "../CSS/admin-custom.css";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 function AdminReservation() {
+  const [activeItem, setActiveItem] = useState("");
+
+  const handleItemClick = (itemName) => {
+    setActiveItem(itemName);
+  };
   return (
     <>
       <link
@@ -16,53 +21,88 @@ function AdminReservation() {
         rel="stylesheet"
       />
       <div className="wrapper">
-        <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item dropdown">
-              <a className="nav-link" data-toggle="dropdown" href="/#">
-                <i className="fas fa-user-cog"></i>
-                &nbsp; Logout
-              </a>
-            </li>
-            <li className="nav-item dropdown">
-              <Link
-                to="/home/users"
-                className="nav-link"
-                data-toggle="dropdown"
-              >
-                Dao Anh Tu
-              </Link>
-            </li>
-          </ul>
-        </nav>
         <div className="main-sidebar sidebar-dark-primary">
           <div className="sidebar">
             <nav className="mt-2">
+              <li
+                className={`nav-item dropdown pl-2 pt-2 ${
+                  activeItem === "home" ? "active" : ""
+                }`}
+              >
+                <Link
+                  to="/home/users"
+                  className="nav-link"
+                  onClick={() => handleItemClick("home")}
+                >
+                  Admin
+                </Link>
+              </li>
               <ul
                 className="nav nav-pills nav-sidebar flex-column"
                 data-widget="treeview"
                 role="menu"
                 data-accordion="false"
               >
-                <li className="nav-item has-treeview">
-                  <Link to={`/home/users`} className="nav-link">
+                <li
+                  className={`nav-item has-treeview ${
+                    activeItem === "staff" ? "menu-open" : ""
+                  }`}
+                >
+                  <Link
+                    to={`/home/users`}
+                    className={`nav-link sidebar-focused ${
+                      activeItem === "staff" ? "active" : ""
+                    }`}
+                    onClick={() => handleItemClick("staff")}
+                  >
                     <i className="nav-icon fas fa-users"></i>
                     <p>Staff Account</p>
                   </Link>
                 </li>
-                <li className="nav-item has-treeview">
-                  <Link to={`/home/restaurant`} className="nav-link">
+                <li
+                  className={`nav-item has-treeview ${
+                    activeItem === "restaurant" ? "menu-open" : ""
+                  }`}
+                >
+                  <Link
+                    to={`/home/restaurant`}
+                    className={`nav-link ${
+                      activeItem === "restaurant" ? "active" : ""
+                    }`}
+                    onClick={() => handleItemClick("restaurant")}
+                  >
                     <i className="nav-icon fas fa-building"></i>
                     <p>Restaurant</p>
                   </Link>
                 </li>
-
-                {/* <li className="nav-item has-treeview">
-                  <Link to={`/staff/menu`} className="nav-link">
-                    <i className="nav-icon fas fa-edit"></i>
+                <li
+                  className={`nav-item has-treeview ${
+                    activeItem === "menu" ? "menu-open" : ""
+                  }`}
+                >
+                  <Link
+                    to={`/home/menu`}
+                    className={`nav-link ${
+                      activeItem === "menu" ? "active" : ""
+                    }`}
+                    onClick={() => handleItemClick("menu")}
+                  >
+                    <i className="fa-solid fa-utensils nav-icon"></i>
                     <p>Menu</p>
                   </Link>
-                </li> */}
+                </li>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <div className="mt-5"></div>
+                <li className="nav-item dropdown">
+                  <a className="nav-link" data-toggle="dropdown" href="/#">
+                    <i class="nav-icon fas fa-power-off"></i>
+                    &nbsp; Log out
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>

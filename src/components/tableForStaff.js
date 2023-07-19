@@ -1,29 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Staff from "./staff";
 import "../CSS/tableForStaff.css";
-import { Tables_Staff } from "../data/ListOfTables";
+import { PopUpCheckOut } from "./popUp";
 
-export default function tableForStaff() {
-  const table1 = Tables_Staff.filter(
-    (table1) => (table1.tableCapacity < 3) & (table1.tableCapacity > 0)
-  );
-  const table2 = Tables_Staff.filter(
-    (table2) => (table2.tableCapacity < 7) & (table2.tableCapacity > 2)
-  );
-  const table3 = Tables_Staff.filter(
-    (table3) => (table3.tableCapacity < 13) & (table3.tableCapacity > 6)
-  );
+export default function TableForStaff() {
+  const [tables, setTable] = useState([]);
+  const [openTable, setOpenTable] = useState(false);
+  const [objTable, setObjTable] = useState({});
 
+  const baseUrl = `http://tablereservationapi.somee.com/API/Admin/GetAllTables`;
+  const getAllTable = () => {
+    fetch(baseUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP Status: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        setTable(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+  useEffect(() => {
+    getAllTable();
+  }, []);
+  const handleOpen = (obj) => {
+    setOpenTable(true);
+    setObjTable(obj);
+  };
+  const handleClose = () => {
+    setOpenTable(false);
+    getAllTable();
+  };
   return (
     <>
-      {/*2 - https://cdn0.iconfinder.com/data/icons/office-set-6/512/4-512.png
-
-    10 - https://th.bing.com/th/id/OIP.pgzSTMKeo25htlim4jWitQHaHa?pid=ImgDet&rs=1
-    
-    4 - https://th.bing.com/th/id/R.684abd5e622a355ead669d5c79c7b97c?rik=NgIW22q67tL42A&pid=ImgRaw&r=0 */}
-
       <Staff />
-
+      (
+      <PopUpCheckOut open={openTable} close={handleClose} table={objTable} />)
       <div className="content-wrapper">
         <section className="content-header">
           <div className="container-fluid">
@@ -47,36 +61,31 @@ export default function tableForStaff() {
                     </form>
                   </div>
                   <div className="card-body table-responsive">
-                    <div className="tables_list">
-                      <div className="table_section">
-                        <div className="title">Square Table</div>
-                        <div className="tables">
-                          {table1.map((table) => (
-                            <div className="table">
-                              <img src="https://cdn0.iconfinder.com/data/icons/office-set-6/512/4-512.png"></img>
+                    <div class="container">
+                      <div class="row">
+                        {tables.map((table) => (
+                          <>
+                            <div class="col">
+                              {table.status ? (
+                                <button onClick={() => handleOpen(table)}>
+                                  <i
+                                    class="fa-sharp fa-solid fa-circle fa-2xl"
+                                    style={{ color: "#16be94" }}
+                                  ></i>
+                                  &nbsp; Table {table.tableId}
+                                </button>
+                              ) : (
+                                <button onClick={() => handleOpen(table)}>
+                                  <i
+                                    class="fa-sharp fa-solid fa-circle fa-2xl"
+                                    style={{ color: "#ff2400" }}
+                                  ></i>
+                                  &nbsp; Table {table.tableId}
+                                </button>
+                              )}
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="table_section">
-                        <div className="title">Rectangle Table</div>
-                        <div className="tables">
-                          {table2.map((table) => (
-                            <div className="table">
-                              <img src="https://th.bing.com/th/id/R.684abd5e622a355ead669d5c79c7b97c?rik=NgIW22q67tL42A&pid=ImgRaw&r=0"></img>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="table_section">
-                        <div className="title">Group Table</div>
-                        <div className="tables">
-                          {table3.map((table) => (
-                            <div className="table">
-                              <img src="https://th.bing.com/th/id/OIP.pgzSTMKeo25htlim4jWitQHaHa?pid=ImgDet&rs=1"></img>
-                            </div>
-                          ))}
-                        </div>
+                          </>
+                        ))}
                       </div>
                     </div>
                   </div>

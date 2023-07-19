@@ -25,17 +25,15 @@ root.render(
           element={<TableReservation />}
         ></Route>
         <Route path="/staff/table" element={<TableForStaff />}></Route>
-        <Route path="/staff/menu" element={<Menu />}></Route>
       </Routes>
-
       {/* Admin */}
       <Routes>
         <Route path="/" element={<LoginAdmin />}></Route>
         <Route path="/home" element={<App />}></Route>
-
         <Route path="/home/users" element={<UserManagement />}></Route>
         <Route path="/home/restaurant" element={<Restaurant />}></Route>
         <Route path="/home/restaurant/table/:id" element={<Table />}></Route>
+        <Route path="/home/menu" element={<Menu />}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>

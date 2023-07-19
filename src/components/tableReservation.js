@@ -1,7 +1,20 @@
 import React from "react";
-import { Reservations } from "../data/Reservations";
+import { useState, useEffect } from "react";
 import Staff from "./staff";
-export default function tableReservation() {
+export default function TableReservation() {
+  const [reservationAPI, setReservationAPI] = useState([]);
+  const reservationUrl = `http://tablereservationapi.somee.com/API/Staff/GetAllReservations`;
+  useEffect(() => {
+    fetch(reservationUrl)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP Status: ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        return setReservationAPI(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <div>
       <Staff />
@@ -53,31 +66,21 @@ export default function tableReservation() {
                     <table className="table table-hover text-nowrap job-seeker-tbl">
                       <thead>
                         <tr>
-                          <th>Customer ID</th>
-                          <th>Restaurant ID</th>
-                          <th>Guest Size</th>
+                          <th>Table ID</th>
+                          <th>Customer Name</th>
                           <th>Time</th>
                           <th>Note</th>
-                          <th>Edit</th>
+                          <th>Guest Size</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {Reservations.map((res) => (
+                        {reservationAPI.map((res) => (
                           <tr>
-                            <td>{res.customerID}</td>
-                            <td>{res.restaurantID}</td>
-                            <td>{res.guestSize}</td>
+                            <td>{res.tableId}</td>
+                            <td>{res.customerName}</td>
                             <td>{res.time}</td>
                             <td>{res.note}</td>
-                            <td>
-                              <button className="active-btn">
-                                <i className="fas fa-pencil-alt"></i>
-                              </button>
-                              &nbsp;
-                              <button className="active-btn">
-                                <i class="fa-regular fa-trash-can"></i>
-                              </button>
-                            </td>
+                            <td>{res.guestSize}</td>
                           </tr>
                         ))}
                       </tbody>
