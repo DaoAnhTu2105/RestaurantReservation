@@ -43,7 +43,7 @@ export default function TableForStaff() {
           <div className="container-fluid">
             <div className="row mb-4">
               <div className="col-md-12 title-block">
-                <h1 className="main-title">Manage Table</h1>
+                <h1 className="main-title">Manage Reserving Table</h1>
               </div>
             </div>
           </div>
