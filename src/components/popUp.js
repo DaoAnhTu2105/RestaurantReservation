@@ -22,25 +22,31 @@ function PopUpTable({ close, open }) {
   const baseUrl = `http://tablereservationapi.somee.com/API/Admin/CreateTable?restaurantId=1`;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(baseUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ size, status }),
-      });
+    const messAdd = window.confirm("Do you want to add this item?");
+    if (messAdd) {
+      try {
+        const response = await fetch(baseUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ size, status }),
+        });
 
-      if (response.ok) {
-        close();
-        setSize(0);
-        setStatus(true);
-        console.log("Add table successful");
-      } else {
-        console.log("Add table failed");
+        if (response.ok) {
+          close();
+          setSize(0);
+          setStatus(true);
+          alert("Add table successful");
+        } else {
+          console.log("Add table failed");
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
       }
-    } catch (error) {
-      console.error("Error calling API:", error);
+    } else {
+      alert("Add failed");
+      close();
     }
   };
   return (
@@ -101,36 +107,42 @@ export const PopUpMenu = ({ close, open }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(
-        "http://tablereservationapi.somee.com/API/Admin/CreateMenu?restaurantId=1",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            dishName,
-            dishDetail,
-            price,
-            type,
-            imgURL,
-          }),
-        }
-      );
+    const messAdd = window.confirm("Do you want to add this menu?");
+    if (messAdd) {
+      try {
+        const response = await fetch(
+          "http://tablereservationapi.somee.com/API/Admin/CreateMenu?restaurantId=1",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              dishName,
+              dishDetail,
+              price,
+              type,
+              imgURL,
+            }),
+          }
+        );
 
-      if (response.ok) {
-        close();
-        setDishName("");
-        setDishDetail("");
-        setPrice(0);
-        setType("");
-        console.log("Menu added successfully");
-      } else {
-        console.log("Failed to add menu");
+        if (response.ok) {
+          close();
+          setDishName("");
+          setDishDetail("");
+          setPrice(0);
+          setType("");
+          console.log("Menu added successfully");
+        } else {
+          console.log("Failed to add menu");
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
       }
-    } catch (error) {
-      console.error("Error calling API:", error);
+    } else {
+      alert("Add menu failed");
+      close();
     }
   };
 
@@ -206,6 +218,7 @@ export const PopUpMenu = ({ close, open }) => {
     </>
   );
 };
+
 export const PopUpEditTable = ({ close, edit, open }) => {
   console.log(edit.tableId);
   const [size, setSize] = useState(edit.size);
@@ -214,23 +227,29 @@ export const PopUpEditTable = ({ close, edit, open }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(baseUrl, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ size, status }),
-      });
+    const messEdit = window.confirm("Do you want to change this table?");
+    if (messEdit) {
+      try {
+        const response = await fetch(baseUrl, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ size, status }),
+        });
 
-      if (response.ok) {
-        close();
-        console.log("Table updated successfully");
-      } else {
-        console.log("Failed to update table");
+        if (response.ok) {
+          close();
+          alert("Table updated successfully");
+        } else {
+          console.log("Failed to update table");
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
       }
-    } catch (error) {
-      console.error("Error calling API:", error);
+    } else {
+      alert("Update failed");
+      close();
     }
   };
 
@@ -287,6 +306,7 @@ export const PopUpEditTable = ({ close, edit, open }) => {
     </>
   );
 };
+
 export const PopUpStaff = ({ close, open }) => {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
@@ -295,30 +315,35 @@ export const PopUpStaff = ({ close, open }) => {
   const [, setClose] = useState(null);
   const handleSubmit = () => {
     const baseUrl = "http://tablereservationapi.somee.com/API/Admin/CreateUser";
-
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password, name, isAdmin }),
-    };
-
-    fetch(baseUrl, requestOptions)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Handle the response data here
-        setClose(close);
-      })
-      .catch((error) => {
-        // Handle any errors that occur during the request
-        console.log(error.message);
-      });
+    const messAdd = window.confirm("Do you want to add this item?");
+    if (messAdd) {
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, name, isAdmin }),
+      };
+      fetch(baseUrl, requestOptions)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Handle the response data here
+          alert("Add Success");
+          setClose(close);
+        })
+        .catch((error) => {
+          // Handle any errors that occur during the request
+          console.log(error.message);
+        });
+    } else {
+      alert("Add doesn't success");
+      setClose(close);
+    }
   };
 
   return (
@@ -400,23 +425,29 @@ export const PopUpEditStaff = ({ close, open, edit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const messEdit = window.confirm("Do you want to change this item?");
+    if (messEdit) {
+      try {
+        const response = await fetch(`${baseUrl}/${edit.userId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password, name, isAdmin }),
+        });
 
-    try {
-      const response = await fetch(`${baseUrl}/${edit.userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, name, isAdmin }),
-      });
-
-      if (response.ok) {
-        close();
-      } else {
-        console.log("Update thất bại");
+        if (response.ok) {
+          alert("Update success");
+          close();
+        } else {
+          console.log("Update thất bại");
+        }
+      } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
       }
-    } catch (error) {
-      console.error("Lỗi khi gọi API:", error);
+    } else {
+      alert("Update failed");
+      close();
     }
   };
 
@@ -509,22 +540,28 @@ export const PopUpEditMenu = ({ close, open, menuEdit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`${baseUrl}/${menuEdit.menuId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ dishName, dishDetail, price, type, imgURL }),
-      });
+    const messEdit = window.confirm("Do you want to change this menu?");
+    if (messEdit) {
+      try {
+        const response = await fetch(`${baseUrl}/${menuEdit.menuId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ dishName, dishDetail, price, type, imgURL }),
+        });
 
-      if (response.ok) {
-        close();
-      } else {
-        console.log("Update thất bại");
+        if (response.ok) {
+          close();
+        } else {
+          console.log("Update thất bại");
+        }
+      } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
       }
-    } catch (error) {
-      console.error("Lỗi khi gọi API:", error);
+    } else {
+      alert("Update failed");
+      close();
     }
   };
 

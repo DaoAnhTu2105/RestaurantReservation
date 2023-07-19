@@ -49,24 +49,30 @@ export default function Menu() {
   };
 
   const handleDeleteMenu = async (id) => {
-    try {
-      const response = await fetch(`${delMenu}/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    const messDel = window.confirm("Do you want to delete this menu?");
+    if (messDel) {
+      try {
+        const response = await fetch(`${delMenu}/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (response.ok) {
-        // Delete successful
-        console.log("Delete successful");
-        getAllDataMenu();
-        // Perform any necessary actions after deletion
-      } else {
-        console.log("Delete failed");
+        if (response.ok) {
+          // Delete successful
+          console.log("Delete successful");
+          getAllDataMenu();
+          // Perform any necessary actions after deletion
+        } else {
+          console.log("Delete failed");
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
       }
-    } catch (error) {
-      console.error("Error calling API:", error);
+    } else {
+      alert("Delete failed");
+      getAllDataMenu();
     }
   };
 

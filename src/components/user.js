@@ -48,22 +48,27 @@ export default function User() {
 
   const handleDelete = async (userId) => {
     console.log(userId);
-    try {
-      const response = await fetch(`${delUser}/${userId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    const messDel = window.confirm("Do you want to delete this staff?");
+    if (messDel) {
+      try {
+        const response = await fetch(`${delUser}/${userId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (response.ok) {
-        console.log("Delete successful");
-        getAllStaff();
-      } else {
-        console.log("Delete failed");
+        if (response.ok) {
+          alert("Delete successful");
+          getAllStaff();
+        } else {
+          console.log("Delete failed");
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
       }
-    } catch (error) {
-      console.error("Error calling API:", error);
+    } else {
+      alert("Delete failed");
     }
   };
   return (

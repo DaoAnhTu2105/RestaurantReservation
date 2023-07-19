@@ -51,22 +51,28 @@ export default function Table() {
   };
 
   const handleDeleteTable = async (id) => {
-    try {
-      const response = await fetch(`${delTable}/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    const messDel = window.confirm("Do you want to delete this table?");
+    if (messDel) {
+      try {
+        const response = await fetch(`${delTable}/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (response.ok) {
-        console.log("Delete successful");
-        getAllTableData();
-      } else {
-        console.log("Delete failed");
+        if (response.ok) {
+          alert("Delete successful");
+          getAllTableData();
+        } else {
+          console.log("Delete failed");
+        }
+      } catch (error) {
+        console.error("Error calling API:", error);
       }
-    } catch (error) {
-      console.error("Error calling API:", error);
+    } else {
+      alert("Delete failed");
+      getAllTableData();
     }
   };
 
